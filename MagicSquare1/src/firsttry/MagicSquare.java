@@ -3,6 +3,9 @@ package firsttry;
 
 public class MagicSquare {
 
+	/**
+	 * Team: Laura Weber, Basel Alwani, Nils Lüdtke, Benny Burkert
+	 */
 	private int[][] square;
 
 	/**
@@ -17,20 +20,18 @@ public class MagicSquare {
 	 * @return Ob der square magic ist
 	 */
 	public boolean isMagicSquare() {
-			  // Zur Vereinfachung quadratisches Format angenommen 
 		int laenge = square.length;
 		int zielsumme = laenge * (laenge * laenge + 1) / 2;
-		boolean vorTest = true; // meldeten alle vorherigen Test true zur�ck?
-		    // Idee: wir ermitteln zuerst Zeile/Spalte/Diagonale und summieren diese jeweils in gleicher Weise auf.
+		boolean vorTest = true;
 		vorTest = vorTest && richtigeZahlen(square);
 		for (int j = 0; j < laenge; j++) {
-			vorTest = vorTest && (zielsumme == summe(zeile(j, square)));
+			vorTest = vorTest && (zielsumme == summe(zeile(j)));
 		}
 		for (int i = 0; i < laenge; i++) {
-			vorTest = vorTest && (zielsumme == summe(spalte(i, square)));
+			vorTest = vorTest && (zielsumme == summe(spalte(i)));
 		}
-		vorTest = vorTest && (zielsumme == summe(diag1(square)));
-		vorTest = vorTest && (zielsumme == summe(diag2(square)));
+		vorTest = vorTest && (zielsumme == summe(diag1()));
+		vorTest = vorTest && (zielsumme == summe(diag2()));
 		return vorTest;
 	}
 
@@ -50,7 +51,6 @@ public class MagicSquare {
 		      for ( int spalte=0; spalte < square[zeile].length; spalte++ )
 		        System.out.print( square[zeile][spalte] + " ");
 		      	System.out.println();
-		      
 		}
 	}
 		
@@ -63,31 +63,27 @@ public class MagicSquare {
 	 * @param square
 	 * @return
 	 */
-	static boolean richtigeZahlen(int[][] square) {
+	 public boolean richtigeZahlen(int[][] square) {
 		boolean bisNokay = true;
 		for (int n = 1; n <= square.length * square.length && bisNokay; n++) {
 			boolean nGefunden = false;
 			for (int zeile=0; zeile < square.length && !nGefunden; zeile++){
 				for (int spalte=0; spalte < square[zeile].length && !nGefunden; spalte++) {
-//		        nGefunden = nGefunden || n == square[zeile][spalte];
-//		        Da wir die Schleife bei nGefunden==true abbrechen, reicht hier auch:
 					nGefunden = n == square[zeile][spalte];
 				}
 			}
-//		    bisNokay = bisNokay && nGefunden;
-//		    Da wegen der Schleifenbedingung im Schleifenrumpf bisNokay==true gelten muss, reicht hier auch:
 		      bisNokay = nGefunden;
 		    }
 		return bisNokay;
 	}
 		  
 		  
-	static int[] zeile(int zeile, int[][] square) {
+	public int[] zeile(int zeile) {
 		return square[zeile];
 	}
 
-	static int[] spalte(int spalte, int[][] square) {
-		int[] ergebnis = new int[square.length]; // neues Array wird zur�ck geliefert
+	public int[] spalte(int spalte) {
+		int[] ergebnis = new int[square.length];
 		for (int zeile = 0; zeile < square.length; zeile++){
 			ergebnis[zeile] = square[zeile][spalte];
 		}
@@ -97,7 +93,7 @@ public class MagicSquare {
 	/**
 	 * Übeprüfe Dialog 1
 	 */
-	static int[] diag1(int[][] square) {
+	public int[] diag1() {
 		int[] ergebnis = new int[square.length];
 		for (int i = 0; i < square.length; i++){
 			ergebnis[i] = square[i][i];
@@ -107,10 +103,9 @@ public class MagicSquare {
 
 	/**
 	 * Überprüfe Dialog 2
-	 * @param square
 	 * @return
 	 */
-	static int[] diag2(int[][] square) {
+	public int[] diag2() {
 		int[] ergebnis = new int[square.length];
 		for (int i = 0; i < square.length; i++){
 			ergebnis[i] = square[i][square.length - i - 1];
@@ -120,7 +115,6 @@ public class MagicSquare {
 
 	/**
 	 * Summiert ein Array auf.
-	 * @param Data zu summierende Daten
 	 * @return Summe von data
 	 */
 	static int summe(int[] daten) {
@@ -132,20 +126,21 @@ public class MagicSquare {
 	}
 			
 	public static void main(String[] args) {
-		int [][] test1 = { {16,  3,  2, 13},
+		/*int [][] test1 = { {16,  3,  2, 13},
 				{ 5, 10, 11,  8},
 				{ 9,  6,  7, 12},
-				{ 4, 15, 14,  1}};
+				{ 4, 15, 14,  1}};*/
+		int [][] test1 = {{16,6,9,3},{1,11,8,14},{7,13,2,12},{10,4,15,5}};
 				 
 		int [][] test2= { {16,  2,  3, 13},
 				{ 5, 10, 11,  8},
 				{ 9,  6,  7, 12},
 				{ 4, 15, 14,  1}};
 				  
-		int [][] test3 = { {10,  8,  8,  8},
-				{ 8,  8, 10,  8},
-				{ 8,  8,  8, 10},
-				{ 8, 10,  8,  8}};
+		int [][] test3 = { {8,  8,  8,  8},
+				{ 8,  8, 8,  8},
+				{ 8,  8,  8, 8},
+				{ 8, 8,  8,  8}};
 				  
 		MagicSquare square1 = new MagicSquare(test1);
 		MagicSquare square2 = new MagicSquare(test2);
