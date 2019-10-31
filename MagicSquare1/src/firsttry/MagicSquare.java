@@ -12,12 +12,12 @@ public class MagicSquare {
 			this.square= square;
 			}
 		
-		//Überprüfung ob es ein Magisches Qudrat ist
+
 		public boolean isMagicSquare() {
 			  // Zur Vereinfachung quadratisches Format angenommen 
 		    int laenge = square.length;
 		    int zielsumme = laenge * (laenge * laenge + 1) / 2;
-		    boolean vorTest = true; // meldeten alle vorherigen Test true zurück?
+		    boolean vorTest = true; // meldeten alle vorherigen Test true zurï¿½ck?
 		    // Idee: wir ermitteln zuerst Zeile/Spalte/Diagonale und summieren diese jeweils in gleicher Weise auf.
 		    vorTest = vorTest && richtigeZahlen(square);
 		    for (int j = 0; j < laenge; j++) {
@@ -78,14 +78,14 @@ public class MagicSquare {
 			  }
 
 		  static int[] spalte(int spalte, int[][] square) {
-			    int[] ergebnis = new int[square.length]; // neues Array wird zurück geliefert
+			    int[] ergebnis = new int[square.length]; // neues Array wird zurï¿½ck geliefert
 			    for (int zeile = 0; zeile < square.length; zeile++){
 			      ergebnis[zeile] = square[zeile][spalte];
 			    }
 			    return ergebnis;
 			  }
 
-			  //Überprüfung Diagonle 1
+			  //ï¿½berprï¿½fung Diagonle 1
 			  static int[] diag1(int[][] square) {
 			    int[] ergebnis = new int[square.length];
 			    for (int i = 0; i < square.length; i++){
@@ -94,7 +94,7 @@ public class MagicSquare {
 			    return ergebnis;
 			  }
 			  
-			  //Überprüfung Diagonale 2
+			  //ï¿½berprï¿½fung Diagonale 2
 			  static int[] diag2(int[][] square) {
 			    int[] ergebnis = new int[square.length];
 			    for (int i = 0; i < square.length; i++){
