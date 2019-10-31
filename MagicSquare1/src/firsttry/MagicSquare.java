@@ -58,7 +58,11 @@ public class MagicSquare {
 		this.square = square;
 	}
 
-	/* pruefen ob genau die Zahlen 1..n^2 drinstehen*/
+	/**
+	 * Prüfen ob Zahlen 1,2..n^2 drin stehen
+	 * @param square
+	 * @return
+	 */
 	static boolean richtigeZahlen(int[][] square) {
 		boolean bisNokay = true;
 		for (int n = 1; n <= square.length * square.length && bisNokay; n++) {
